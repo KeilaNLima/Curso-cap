@@ -5,8 +5,12 @@
  */
 package util;
 
+import ResultSet.ResultSEt;
+import com.mysql.jdbc.BlobFromLocator;
+
 import java.sql.Connection;
 import java.sql.DrivermANAGER;
+import java.sql.PreparedStatement;
 
 * @author keila
 
@@ -17,19 +21,42 @@ import java.sql.DrivermANAGER;
       public static final String USER = "root";
       public static final String PASS = "";
 
-         public static connection getconnection(){
-           try{
-              class.forName(DRIVER):
-              return Drivermanager.getconnection(URL,USER,PASS):
-          } catch new RuntimeException("Erro na cone„o com banco de dados",ex);
+         public static Connection getConnection() {
+           try {
+              Class.forName(DRIVER);
+              return DriverManager.getConnection(URL,USER,PASS);
+          } catch (Exception ex) {
+               thron new RuntimeException("Erro na conex√£o com banco de dados", ex);
          
           }
       }        
       public static void  closeConnection(Connection connection);  
-           Try{
-              if(Connection != null) {
-                 connection.close();
+           try {
+               if (connection != null) {
+                   connnection.close();
+
+               catch (Exception ex) {
+                   thron new RuntimeException("Erro ao fechar a conex√£o com banco de dados", ex);}
+
+        }
+           }
+      Public  static void closeConnection(Connection connection, PreparedStatement statement, ResultSEt resultSet) {
+            try {
+                if (connection != null) {
+                    connection.close();
+        }
+                if (statement != null) {
+                    statement.close();
+
+                if(resultSet != null) {
+                    result.close();
                 }
-            }   
-             cath(Exception ex) {
-                throw new RuntimeException("Erro ao fechar a conex„o com banco de dados",ex);
+
+        }     catch (Exception ex) {
+                   thron new RuntimeException("Erro ao fechar a conex√£o com banco de dados", ex);
+
+
+        }
+        }
+
+        }
